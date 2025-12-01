@@ -32,23 +32,28 @@ int main() {
 	//std::string array[max_lines];
 	std::string line; // use to hold the number of lines
 
-	while (getline(file, line)) 
+	// define puzzle start point
+	int current_position;
+	current_position = 50;
+
+	while (getline(file, line)) // while there are lines from file to read
 	{	
-		cout << line << endl;
+		//cout << line[0] << endl; // print each line plus start a new line
+
+		// parse each line for direction (R & L) and number of moves
+		std::string direction;
+		direction = line[0];
+
+		std::string no_moves;
+		no_moves = line.substr(1);
+
+		// \n prints new line without flushing buffer
+		cout << direction << "\n" << no_moves << endl;
+
+
 	}
 
-	//int lines = 0;
 
-	/*
-	// keep reading file until reach its end. While we are not at the end of the file.
-	while (!file.eof()) 
-	{
-		// read each line from the file and add it to the array at index lines
-		std::getline(file, array[lines]);
-		lines++; // add 1 to lines
-	
-	}
-	*/
 
 	return 0; // its convention to return 0 for successfully run code in c++ so the OS knows that it ran successfully
 }
