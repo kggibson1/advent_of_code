@@ -5,61 +5,6 @@
 #include <numeric> // for std::iota
 #include <vector> // to include vectors
 
-// checks input string to see if its made of repeating pattern of numbers.
-// const means string cannot be edited within function
-// std::string is defining the type of s, this must be done
-// & provides a reference to s for the function instead of copying the string, which is ideal for when you have larger strings.
-
-// turns out I got the logic wrong on this one, only looking for numbers where the first half = second half, will write another function for this
-// at least it was a good learning exercise XD
-bool check_repetition(const std::string& s) {
-
-	// get string size
-	int n = s.size();
-
-	// loop over substrings of the ID number, up to half the length of the full string,
-	// otherwise it can't be a repeating pattern
-	// n/2 returns an int, instead of float, ++len means +1 to len after each loop iteration
-	for (int len = 1; len <= n / 2; ++len) {
-
-		// check if substring can evenly divide the string
-		// if FALSE, substring cannot be the repeating pattern if one exists
-		if (n % len == 0) {
-
-			// define substring to be checked for repetition in s
-			std::string pattern = s.substr(0, len);
-
-			// boolean which will be switched to false if pattern is not found to be a repetitive pattern
-			bool match = true;
-
-			// check for substring match in all repeated blocks
-			// starting from n[0] to n[len], then n[len+1] to n[len+len] and so on,
-			// check if these chunks of n match the pattern
-			for (int i = 0; i < n; i += len) {
-
-				// if chunk of n doesn't match the pattern, the substring being checked
-				// is not a repeated pattern, move onto next substring
-				if (s.substr(i, len) != pattern) {
-					match = false;
-					break; // leave loop, move onto next substring
-				}
-
-			} // end inner for loop
-
-			// if match remains true, the string consists of a repeating pattern
-			// function returns true (hence bool type)
-			if (match) {
-				return true;
-			}
-
-		} // end if(n % len == 0)
-
-	} // end outer for loop
-
-	// if no repeating pattern found return false
-	return false;
-}
-
 // checks if a number is made of a number repeated twice, e.g 1212 is a repetition of 12 or 12341234 is a repetition of 1234
 bool check_repetition_twice(const std::string& s) {
 	
